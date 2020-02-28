@@ -2,6 +2,6 @@
 
 Exercise 4
 
-https://github.com/akash-doshi/comp0034-flaskdb.git
+https://github.com/akash-doshi/comp0034-flask.git
 
 
