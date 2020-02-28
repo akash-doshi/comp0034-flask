@@ -1,11 +1,11 @@
 {% extends "base.html" %}
-{% block title %}Webpage for a rain forecast blog {% endblock %}
+{% block title %}Rain Forecast Blog{% endblock %}
 {% block content %}
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
                 {% if form.errors %}
-                    <p><strong>Incorrect Form Entry. Please try again.</strong>
+                    <p><strong>Incorrect entry, please re-enter.</strong>
                     <ul>
                         {% for error in form.errors %}
                             <li>{{ error }}</li>

@@ -16,8 +16,9 @@ class signupForm(FlaskForm):
    password = PasswordField('Password', validators=[DataRequired(), Length(min=8, max=16)])
    submit = SubmitField('Sign Up')
 
+   def validateEmail(self, email):
+      user = User.query.filter_by(email=email.data).first()
+      if user is not None:
+         raise ValidationError('An account already exists for this email address.')
 
-def validateEmail(self, email):
-   user = User.query.filter_by(email=email.data).first()
-   if user is not None:
-      raise ValidationError('An account already exists for this email address.')
+

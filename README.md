@@ -1,5 +1,7 @@
 ###COMP0034 Flask Application
 
-Exercise 3
+Exercise 4
 
-https://github.com/akash-doshi/comp0034-flask
+https://github.com/akash-doshi/comp0034-flaskdb.git
+
+

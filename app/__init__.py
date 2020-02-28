@@ -1,12 +1,10 @@
 from flask import Flask, render_template, flash, redirect, url_for
-from app.main.forms import signupForm
 from os.path import dirname, abspath, join
 from flask_sqlalchemy import SQLAlchemy
 
-from config import DevConfig
-
 db = SQLAlchemy()
 
+from config import DevConfig
 
 def create_app(config_class=DevConfig):
     """

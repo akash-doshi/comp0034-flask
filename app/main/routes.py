@@ -7,9 +7,6 @@ from app.models import User, City, Forecast
 
 bp_main = Blueprint('main', __name__)
 
-
-
-
 @bp_main.route('/', methods=['GET', 'POST'])
 @bp_main.route('/home', methods=['GET', 'POST'])
 def index():
@@ -44,10 +41,10 @@ def signup():
         return redirect(url_for('main.index'))
     return render_template('signup.html', form=form)
 
-@bp_main.route('/users', methods=['GET'])
+@bp_main.route('/user', methods=['GET'])
 def users():
     user_list = User.query.all()
-    return render_template("users.html", users=user_list)
+    return render_template("user.html", users=user_list)
 
 @bp_main.route('/search', methods=['POST', 'GET'])
 def search():
@@ -61,6 +58,6 @@ def search():
         if not results:
             flash("No city found with that name.")
             return redirect('/')
-        return render_template('search_results.html', results=results)
+        return render_template('search.html', results=results)
     else:
         return redirect(url_for('main.index'))
