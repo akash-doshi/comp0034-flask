@@ -1,5 +1,6 @@
 from flask import Flask, render_template, flash, redirect, url_for
 from app.main.forms import signupForm
+from os.path import dirname, abspath, join
 from flask_sqlalchemy import SQLAlchemy
 
 from config import DevConfig
@@ -14,27 +15,17 @@ def create_app(config_class=DevConfig):
     """
     app = Flask(__name__)
     app.config.from_object(config_class)
+    app.config['SECRET_KEY'] = "dfdQbTOExternjy5xmCNaA"
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    CWD = dirname(abspath(__file__))
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + join(CWD, 'rain.sqlite')
 
-# Initialise the database and create tables
+    # Initialise the database and create tables
     db.init_app(app)
 
-    @app.route('/')
-    @app.route('/home')
-    def index():
-        return render_template('index.html')
-
-    @app.route('/signup', methods=['GET', 'POST'])
-    def signup():
-        form = signupForm()
-        if form.validate_on_submit():
-            flash('Success')
-            return redirect(url_for('index'))
-
-        return render_template('signup.html', form=form)
-
-    if __name__ == '__main__':
-        app.run(debug=True)
-
+    # The following is needed if you want to map classes to an existing database
+    with app.app_context():
+        db.Model.metadata.reflect(db.engine)
 
         # Register Blueprints
     from app.main.routes import bp_main
